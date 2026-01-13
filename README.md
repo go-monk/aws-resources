@@ -25,3 +25,15 @@ Advantages over `aws`:
 - easier to remember and use
 - no dependencies, just a single binary
 - portable - works on Mac, Linux, Windows, ...
+
+---
+
+Some use cases:
+
+```sh
+# Count resources in all available profiles.
+for profile in $(aws configure list-profiles); do echo -n "$profile: "; aws-resources -profile $profile | wc -l; done
+
+# Get resources with tags in all existing regions.
+for region in $(aws ec2 describe-regions --all-regions --query 'Regions[].RegionName' --output text); do echo "---$region---"; aws-resources -region $region -tags; done
+```
