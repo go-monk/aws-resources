@@ -13,7 +13,8 @@ import (
 )
 
 var usage = func() {
-	fmt.Fprintf(flag.CommandLine.Output(), "Print all existing aws resources.\n\n")
+	fmt.Fprintf(flag.CommandLine.Output(), "Print AWS resources returned by Resource Groups Tagging API.\n")
+	fmt.Fprintf(flag.CommandLine.Output(), "Output can include previously tagged or already deleted resources.\n\n")
 	flag.PrintDefaults()
 }
 

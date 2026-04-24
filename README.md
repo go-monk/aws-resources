@@ -1,11 +1,11 @@
-CLI tool to print AWS resources and tags.
+CLI tool to print AWS resources and tags returned by the Resource Groups Tagging API.
 
 ```sh
 $ go install
 $ aws-resources -h
 ```
 
-Note: This tool uses the Resource Groups Tagging API that can sometimes return resources that already don't exist.
+Note: AWS `GetResources` can return tagged or previously tagged resources, so this tool can list resources that already do not exist. When a result looks suspicious, confirm it with the service-specific API such as `aws ec2 describe-nat-gateways`.
 
 ---
 
