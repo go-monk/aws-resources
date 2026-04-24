@@ -13,15 +13,15 @@ import (
 )
 
 var usage = func() {
-	fmt.Fprintf(flag.CommandLine.Output(), "Print AWS resources returned by Resource Groups Tagging API.\n")
-	fmt.Fprintf(flag.CommandLine.Output(), "Output can include previously tagged or already deleted resources.\n\n")
+	fmt.Fprintf(flag.CommandLine.Output(), "List AWS resources returned by the AWS Resource Groups Tagging API.\n")
+	fmt.Fprintf(flag.CommandLine.Output(), "Output can include previously tagged or deleted resources.\n\n")
 	flag.PrintDefaults()
 }
 
 var tagsFlag Tags
 
 func init() {
-	flag.Var(&tagsFlag, "tag", "having `key=value` tag (repeatable)")
+	flag.Var(&tagsFlag, "tag", "filter by `key=value` tag (repeatable)")
 }
 
 func main() {
@@ -29,9 +29,9 @@ func main() {
 	log.SetPrefix("aws-resources: ")
 
 	flag.Usage = usage
-	profile := flag.String("profile", "", "in this profile")
-	region := flag.String("region", "", "in this region")
-	withTags := flag.Bool("tags", false, "print also tags")
+	profile := flag.String("profile", "", "AWS profile to use")
+	region := flag.String("region", "", "AWS region to query")
+	withTags := flag.Bool("tags", false, "include tags in the output")
 	flag.Parse()
 
 	// Create a context that gets canceled on Ctrl-C or kill PID.
